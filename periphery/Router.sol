@@ -113,7 +113,7 @@ contract Router is IRouter {
         uint deadline
     ) public virtual override ensure(deadline) returns (uint amountA, uint amountB) {
         address pair = pairFor(tokenA, tokenB);
-        // Mengubah dari IPair ke IERC20 untuk memanggil transferFrom
+        // Change from IPair to IERC20 to call transferFrom
         IERC20(pair).transferFrom(msg.sender, pair, liquidity); // send liquidity to pair
         (uint amount0, uint amount1) = IPair(pair).burn(to);
         (address token0,) = sortTokens(tokenA, tokenB);
